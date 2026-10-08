@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="64dp"
+    android:viewportWidth="220"
+    android:viewportHeight="70">
+
+    <!-- "PorAquí" Wordmark Typography Vectors -->
+    <!-- Letter P -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M 10,12 H 24 C 30,12 35,16 35,22 C 35,28 30,32 24,32 H 20 V 44 H 10 Z M 20,22 H 24 C 25.5,22 26.5,21 26.5,22 C 26.5,23 25.5,24 24,24 H 20 Z" />
+
+    <!-- Letter o -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M 46,20 C 39,20 34,25 34,32 C 34,39 39,44 46,44 C 53,44 58,39 58,32 C 58,25 53,20 46,20 Z M 46,28 C 48,28 49.5,29.5 49.5,32 C 49.5,34.5 48,36 46,36 C 44,36 42.5,34.5 42.5,32 C 42.5,29.5 44,28 46,28 Z" />
+
+    <!-- Letter r -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M 62,21 V 44 H 71 V 31 C 73,29 76,29 78,30 L 81,22 C 77,20 73,21 71,24 V 21 Z" />
+
+    <!-- Letter A (with location pin marker inside) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M 98,20 C 90,20 84,25 84,32 C 84,39 90,44 98,44 C 106,44 112,39 112,32 C 112,25 106,20 98,20 Z M 98,27 C 100,27 102,28.5 102,30.5 C 102,32.5 98,36 98,36 C 98,36 94,32.5 94,30.5 C 94,28.5 96,27 98,27 Z" />
+
+    <!-- Letter q -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M 125,28 C 122,28 120,30 120,32 C 120,34 122,36 125,36 C 128,36 130,34 130,32 C 130,30 128,28 125,28 Z M 125,20 C 130,20 134,23 136,27 V 21 H 144 V 44 C 144,48 140,51 135,51 H 125 V 44 H 132 C 134,44 136,42 136,40 V 37 C 133,41 129,44 125,44 C 117,44 111,39 111,32 C 111,25 117,20 125,20 Z" />
+
+    <!-- Letter u -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M 148,21 V 35 C 148,36.5 149.5,37 151,37 C 152.5,37 154,36.5 154,35 V 21 H 163 V 35 C 163,41 158,44 151,44 C 144,44 139,41 139,35 V 21 Z" />
+
+    <!-- Letter í (with Leaf Dot) -->
+    <!-- Stem of í -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M 167,21 V 44 H 176 V 21 Z" />
+    <!-- Leaf Dot on í -->
+    <path
+        android:fillColor="#84CC16"
+        android:pathData="M 171.5,10 C 167,11.5 167,16 171.5,18 C 176,16.5 177,12 171.5,10 Z" />
+
+    <!-- Curved Smile / Underline Arc -->
+    <path
+        android:fillColor="#4ADE80"
+        android:pathData="M 20,52 C 60,63 120,63 170,52 C 120,57 60,57 20,52 Z" />
+
+</vector>

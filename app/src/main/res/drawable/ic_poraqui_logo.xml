@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="180dp"
+    android:height="180dp"
+    android:viewportWidth="260"
+    android:viewportHeight="260">
+
+    <!-- Sparkles on top right of the pin -->
+    <path
+        android:fillColor="#84CC16"
+        android:pathData="M 180,45 C 183,41 189,41 192,45 C 195,49 193,55 188,57 C 183,59 178,53 180,45 Z" />
+    <path
+        android:fillColor="#84CC16"
+        android:pathData="M 195,60 C 199,57 205,59 206,64 C 207,69 203,73 198,72 C 193,71 192,64 195,60 Z" />
+
+    <!-- Outer Location Pin (White) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M 130,35 C 92,35 62,65 62,103 C 62,145 115,192 125,201 C 128,204 132,204 135,201 C 145,192 198,145 198,103 C 198,65 168,35 130,35 Z" />
+
+    <!-- Pin Inner Cutout Background (Dark Teal Green) -->
+    <path
+        android:fillColor="#044D34"
+        android:pathData="M 130,50 C 104,50 83,71 83,97 C 83,125 118,160 130,171 C 142,160 177,125 177,97 C 177,71 156,50 130,50 Z" />
+
+    <!-- Store Canopy / Awning Stripes inside Pin -->
+    <!-- Stripe 1 (Green) -->
+    <path
+        android:fillColor="#10B981"
+        android:pathData="M 96,82 L 113,82 L 110,96 C 107,100 100,100 97,96 Z" />
+    <!-- Stripe 2 (Teal / Cyan) -->
+    <path
+        android:fillColor="#0EA5E9"
+        android:pathData="M 113,82 L 130,82 L 130,98 C 127,101 116,101 113,98 Z" />
+    <!-- Stripe 3 (Cyan / Light Blue) -->
+    <path
+        android:fillColor="#38BDF8"
+        android:pathData="M 130,82 L 147,82 L 147,98 C 144,101 133,101 130,98 Z" />
+    <!-- Stripe 4 (Green Accent) -->
+    <path
+        android:fillColor="#059669"
+        android:pathData="M 147,82 L 164,82 L 163,96 C 160,100 153,100 150,96 Z" />
+
+    <!-- Canopy Roof Line -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M 94,78 L 166,78 L 164,82 L 96,82 Z" />
+
+    <!-- Store Building Base (White) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M 102,98 L 158,98 L 158,132 L 102,132 Z" />
+
+    <!-- Store Door Entrance (Dark Green) -->
+    <path
+        android:fillColor="#022115"
+        android:pathData="M 108,108 L 124,108 L 124,132 L 108,132 Z" />
+
+    <!-- Store Window (Light Blue) -->
+    <path
+        android:fillColor="#38BDF8"
+        android:pathData="M 130,108 L 152,108 L 152,126 L 130,126 Z" />
+
+</vector>

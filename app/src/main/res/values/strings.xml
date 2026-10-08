@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">PorAquí</string>
+    <string name="splash_subtitle">Todo lo que necesitas, cerca de ti.</string>
+
+    <!-- Login Strings -->
+    <string name="login_header_title">Descubre lo que hay cerca</string>
+    <string name="login_header_subtitle">Conecta con los negocios de tu comunidad.</string>
+    <string name="login_welcome_title">¡Bienvenido!</string>
+    <string name="login_welcome_subtitle">Inicia sesión para personalizar tu experiencia.</string>
+    <string name="login_label_email">Correo electrónico</string>
+    <string name="login_hint_email">correo@ejemplo.com</string>
+    <string name="login_label_password">Contraseña</string>
+    <string name="login_hint_password">••••••••</string>
+    <string name="login_forgot_password">¿Olvidaste tu contraseña?</string>
+    <string name="login_button_submit">Iniciar sesión</string>
+    <string name="login_no_account_prefix">¿Aún no tienes cuenta? </string>
+    <string name="login_register_action">Regístrate</string>
+    <string name="login_footer_text">GRUPO 2 · MAQUETA MVP</string>
+</resources>
