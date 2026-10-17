@@ -62,25 +62,31 @@ class LoginActivity : AppCompatActivity() {
 
         // Register Link Click
         tvRegister.setOnClickListener {
-            Toast.makeText(this, "Navegando a Registro...", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
     }
 
     private fun observeViewModel() {
+        val btnLogin = findViewById<Button>(R.id.btn_login)
         viewModel.loginState.observe(this) { state ->
             when (state) {
+                is LoginViewModel.LoginState.Loading -> {
+                    btnLogin.isEnabled = false
+                }
                 is LoginViewModel.LoginState.Success -> {
+                    btnLogin.isEnabled = true
                     Toast.makeText(this, state.message, Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
                 }
                 is LoginViewModel.LoginState.Error -> {
+                    btnLogin.isEnabled = true
                     Toast.makeText(this, state.message, Toast.LENGTH_SHORT).show()
                     viewModel.resetState()
                 }
                 is LoginViewModel.LoginState.Idle -> {
-                    // Do nothing
+                    btnLogin.isEnabled = true
                 }
             }
         }

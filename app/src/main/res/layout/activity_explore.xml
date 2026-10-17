@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/explore_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_stitch_splash_gradient"
+    tools:context=".ui.explore.ExploreActivity">
+
+    <!-- Scrollable Main Content -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested_scroll_view_explore"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:paddingBottom="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="36dp"
+            android:paddingBottom="16dp">
+
+            <!-- Header Section (Back Button + Title) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="12dp">
+
+                <TextView
+                    android:id="@+id/btn_back"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:background="@drawable/bg_btn_back"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="‹"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_explore_header_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:text="Explorar negocios"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <!-- Search Bar Section -->
+            <LinearLayout
+                android:id="@+id/ll_search_container"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_dark_search_field"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="14dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🔍"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/et_search_explore"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="¿Qué estás buscando?"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:textColor="@color/white"
+                    android:textColorHint="#90A7F3D0"
+                    android:textSize="13.5sp" />
+
+            </LinearLayout>
+
+            <!-- Horizontal Category Filters -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_category_filters"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="5"
+                tools:listitem="@layout/item_category_filter" />
+
+            <!-- Results Count Indicator -->
+            <TextView
+                android:id="@+id/tv_results_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="#B3A7F3D0"
+                android:textSize="13sp"
+                tools:text="5 negocios encontrados" />
+
+            <!-- Businesses List -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_explore_businesses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                tools:itemCount="5"
+                tools:listitem="@layout/item_business" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Bottom Navigation Bar -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:minHeight="62dp"
+        android:background="#01140E"
+        app:elevation="12dp"
+        app:itemIconSize="22dp"
+        app:itemIconTint="@color/bottom_nav_dark_selector"
+        app:itemRippleColor="@null"
+        app:itemTextColor="@color/bottom_nav_dark_selector"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

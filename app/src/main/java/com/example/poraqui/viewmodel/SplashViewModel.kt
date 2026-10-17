@@ -12,13 +12,20 @@ class SplashViewModel : ViewModel() {
     private val _navigateToNext = MutableLiveData<Boolean>()
     val navigateToNext: LiveData<Boolean> get() = _navigateToNext
 
+    private val _statusText = MutableLiveData<String>("Iniciando experiencia...")
+    val statusText: LiveData<String> get() = _statusText
+
     init {
-        startSplashTimer()
+        startSplashSequence()
     }
 
-    private fun startSplashTimer() {
+    private fun startSplashSequence() {
         viewModelScope.launch {
-            delay(2500)
+            delay(1000)
+            _statusText.value = "Conectando con tu comunidad..."
+            delay(1200)
+            _statusText.value = "Sintonizando negocios locales..."
+            delay(1200)
             _navigateToNext.value = true
         }
     }

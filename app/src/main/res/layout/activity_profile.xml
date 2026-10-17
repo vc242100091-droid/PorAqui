@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/profile_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_stitch_splash_gradient"
+    tools:context=".ui.profile.ProfileActivity">
+
+    <!-- Scrollable Profile Content -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested_scroll_view_profile"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:paddingBottom="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="36dp"
+            android:paddingBottom="24dp">
+
+            <!-- Top Header Bar -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="16dp">
+
+                <TextView
+                    android:id="@+id/tv_profile_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:text="Mi perfil"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <!-- Business Mode Button -->
+                <TextView
+                    android:id="@+id/btn_business_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/bg_stitch_btn_secondary"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:paddingHorizontal="16dp"
+                    android:text="Modo negocio"
+                    android:textColor="@color/stitch_emerald_bright"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <!-- User Info Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_profile_avatar"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:background="@drawable/bg_avatar_circle"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="32sp"
+                    android:textStyle="bold"
+                    tools:text="S" />
+
+                <TextView
+                    android:id="@+id/tv_profile_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:text="Sofía Martínez" />
+
+                <TextView
+                    android:id="@+id/tv_profile_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textColor="#B3A7F3D0"
+                    android:textSize="12.5sp"
+                    tools:text="sofia@email.com · Sonsonate" />
+
+            </LinearLayout>
+
+            <!-- Stat Cards Row (3 Cards) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <!-- Stat 1: Guardados -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_dark_card"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingVertical="14dp">
+
+                    <TextView
+                        android:id="@+id/tv_stat_saved"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/stitch_mint_neon"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        tools:text="12" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Guardados"
+                        android:textColor="#B3A7F3D0"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <!-- Stat 2: Reseñas -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="3dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_dark_card"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingVertical="14dp">
+
+                    <TextView
+                        android:id="@+id/tv_stat_reviews"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/stitch_mint_neon"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        tools:text="4" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Reseñas"
+                        android:textColor="#B3A7F3D0"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <!-- Stat 3: Visitas -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_dark_card"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingVertical="14dp">
+
+                    <TextView
+                        android:id="@+id/tv_stat_visits"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/stitch_mint_neon"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        tools:text="8" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Visitas"
+                        android:textColor="#B3A7F3D0"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Section "Mi cuenta" Header -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="10dp"
+                android:text="Mi cuenta"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <!-- Account Options Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_dark_card"
+                android:orientation="vertical">
+
+                <!-- Row 1: Negocios guardados -->
+                <LinearLayout
+                    android:id="@+id/row_saved_businesses"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:gravity="center"
+                        android:text="❤️"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:text="Negocios guardados"
+                        android:textColor="@color/white"
+                        android:textSize="14.5sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="›"
+                        android:textColor="#A7F3D0"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#1510B981" />
+
+                <!-- Row 2: Historial de visitas -->
+                <LinearLayout
+                    android:id="@+id/row_history"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:gravity="center"
+                        android:text="🕒"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:text="Historial de visitas"
+                        android:textColor="@color/white"
+                        android:textSize="14.5sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="›"
+                        android:textColor="#A7F3D0"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#1510B981" />
+
+                <!-- Row 3: Notificaciones -->
+                <LinearLayout
+                    android:id="@+id/row_notifications"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:gravity="center"
+                        android:text="🔔"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:text="Notificaciones"
+                        android:textColor="@color/white"
+                        android:textSize="14.5sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="›"
+                        android:textColor="#A7F3D0"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#1510B981" />
+
+                <!-- Row 4: Configuración -->
+                <LinearLayout
+                    android:id="@+id/row_settings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:gravity="center"
+                        android:text="⚙️"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:text="Configuración"
+                        android:textColor="@color/white"
+                        android:textSize="14.5sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="›"
+                        android:textColor="#A7F3D0"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Cerrar sesión Button -->
+            <TextView
+                android:id="@+id/btn_logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="28dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="8dp"
+                android:text="Cerrar sesión"
+                android:textColor="#F87171"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Bottom Navigation Bar -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:minHeight="62dp"
+        android:background="#01140E"
+        app:elevation="12dp"
+        app:itemIconSize="22dp"
+        app:itemIconTint="@color/bottom_nav_dark_selector"
+        app:itemRippleColor="@null"
+        app:itemTextColor="@color/bottom_nav_dark_selector"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

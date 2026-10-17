@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="360dp"
+    android:height="640dp"
+    android:viewportWidth="360"
+    android:viewportHeight="640">
+
+    <!-- Dark Forest Canvas Base -->
+    <path
+        android:fillColor="#02170F"
+        android:pathData="M0,0h360v640h-360z" />
+
+    <!-- Urban City Blocks (Dark Teal Fills) -->
+    <path
+        android:fillColor="#042217"
+        android:pathData="M30,120 h100 v90 h-100 z M180,80 h140 v120 h-140 z M20,280 h110 v110 h-110 z M220,320 h120 v140 h-120 z M40,460 h120 v120 h-120 z M200,480 h130 v110 h-130 z" />
+
+    <!-- Secondary Roads (Teal Green Lines) -->
+    <path
+        android:strokeColor="#083824"
+        android:strokeWidth="12"
+        android:pathData="M-10,180 L370,140 M50,-10 L160,650 M190,210 L370,360 M120,410 L-10,320" />
+
+    <!-- Main Arterial Highways (Glowing Emerald Path) -->
+    <path
+        android:strokeColor="#0E573C"
+        android:strokeWidth="10"
+        android:pathData="M-10,250 C100,250 160,200 200,100 L230,-10 M90,650 C150,500 230,420 370,400" />
+
+    <!-- Road Centerlines (Dotted Light Mint) -->
+    <path
+        android:strokeColor="#10B981"
+        android:strokeWidth="2"
+        android:pathData="M-10,250 C100,250 160,200 200,100 L230,-10 M90,650 C150,500 230,420 370,400" />
+
+</vector>

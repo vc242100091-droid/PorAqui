@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/map_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_map_grid_canvas"
+    tools:context=".ui.map.MapActivity">
+
+    <!-- Header Floating Card -->
+    <LinearLayout
+        android:id="@+id/ll_map_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/bg_dark_card"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="📍"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_map_header_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Negocios cerca de Sonsonate"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_map_radius"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Radio actual: 3.5 km"
+                android:textColor="#B3A7F3D0"
+                android:textSize="11.5sp" />
+
+        </LinearLayout>
+
+        <!-- Filter Sliders Button -->
+        <TextView
+            android:id="@+id/btn_map_filter"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:background="@drawable/bg_btn_back"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="🎛️"
+            android:textColor="@color/stitch_emerald_bright"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <!-- Floating Map Pin 1: Coffee Cup Pin (La Esquina) -->
+    <LinearLayout
+        android:id="@+id/pin_coffee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/ll_bottom_cards_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.22"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_map_header"
+        app:layout_constraintVertical_bias="0.18">
+
+        <FrameLayout
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/bg_map_marker_bubble"
+            android:elevation="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="☕"
+                android:textSize="24sp" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <!-- Floating Map Pin 2: Doña Marta Burger Pin & Label -->
+    <LinearLayout
+        android:id="@+id/pin_marta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/ll_bottom_cards_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.82"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_map_header"
+        app:layout_constraintVertical_bias="0.32">
+
+        <!-- Label Chip -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/bg_dark_card"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="4dp"
+            android:text="• Doña Marta"
+            android:textColor="@color/white"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <FrameLayout
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/bg_map_marker_bubble"
+            android:elevation="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="🍔"
+                android:textSize="24sp" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <!-- Bottom Container: Info Card + Selected Business Card -->
+    <LinearLayout
+        android:id="@+id/ll_bottom_cards_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="80dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- Info Card: MAPA INTERACTIVO -->
+        <LinearLayout
+            android:id="@+id/ll_info_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bg_map_info_card"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="12dp">
+
+            <TextView
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:background="@drawable/bg_btn_back"
+                android:gravity="center"
+                android:text="🗺️"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_badge_interactive_map"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="2dp"
+                    android:text="MAPA INTERACTIVO"
+                    android:textColor="@color/stitch_mint_neon"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="En la versión comercial, esta pantalla conectará en tiempo real con Google Maps para navegación GPS y rutas."
+                    android:textColor="#B3A7F3D0"
+                    android:textSize="11.5sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Selected Business Preview Card -->
+        <LinearLayout
+            android:id="@+id/ll_selected_business_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_dark_card"
+            android:clickable="true"
+            android:elevation="2dp"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <!-- Icon Container Box -->
+            <FrameLayout
+                android:id="@+id/fl_selected_business_icon"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_card_category">
+
+                <TextView
+                    android:id="@+id/tv_selected_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="☕"
+                    android:textSize="22sp" />
+            </FrameLayout>
+
+            <!-- Details Container -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_selected_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    tools:text="Cafetería La Esquina" />
+
+                <TextView
+                    android:id="@+id/tv_selected_rating_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:textColor="#A7F3D0"
+                    android:textSize="12sp"
+                    tools:text="★ 4.8 · Cafeterías" />
+
+                <TextView
+                    android:id="@+id/tv_selected_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="#B3A7F3D0"
+                    android:textSize="11sp"
+                    tools:text="📍 850 m · Centro de Sonsonate" />
+
+            </LinearLayout>
+
+            <!-- Status Badge & Chevron -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_selected_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="• Abierto"
+                    android:textColor="#00FF87"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="›"
+                    android:textColor="#A7F3D0"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Bottom Navigation Bar -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:minHeight="62dp"
+        android:background="#01140E"
+        app:elevation="12dp"
+        app:itemIconSize="22dp"
+        app:itemIconTint="@color/bottom_nav_dark_selector"
+        app:itemRippleColor="@null"
+        app:itemTextColor="@color/bottom_nav_dark_selector"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

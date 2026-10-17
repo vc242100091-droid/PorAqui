@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scroll_view_register"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#001A12"
+    android:fillViewport="true"
+    tools:context=".ui.auth.RegisterActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="32dp">
+
+        <!-- Top Header Card -->
+        <LinearLayout
+            android:id="@+id/header_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_dark_login_header"
+            android:orientation="vertical"
+            android:paddingHorizontal="24dp"
+            android:paddingTop="36dp"
+            android:paddingBottom="28dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- Top Row: Back button + Logo -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="12dp">
+
+                <TextView
+                    android:id="@+id/btn_back_register"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/bg_btn_back"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="‹"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <!-- Logo / Pin -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/poraqui_sin_fondo" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Crear cuenta"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Elige cómo deseas usar PorAquí."
+                android:textColor="#A7F3D0"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <!-- Main Body Section -->
+        <LinearLayout
+            android:id="@+id/form_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="24dp"
+            android:paddingTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/header_container">
+
+            <!-- Account Type Selector (2 Cards Side by Side) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <!-- Card 1: Usuario -->
+                <LinearLayout
+                    android:id="@+id/card_type_user"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_dark_card"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:background="@drawable/bg_avatar_circle"
+                            android:gravity="center"
+                            android:text="👤"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/indicator_user"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/bg_avatar_circle"
+                            android:gravity="center"
+                            android:text="✓"
+                            android:textColor="@color/white"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Usuario"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Descubre negocios y servicios."
+                        android:textColor="#B3A7F3D0"
+                        android:textSize="11.5sp" />
+
+                </LinearLayout>
+
+                <!-- Card 2: Negocio -->
+                <LinearLayout
+                    android:id="@+id/card_type_business"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_dark_card"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:background="@drawable/bg_avatar_circle"
+                            android:gravity="center"
+                            android:text="🏢"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/indicator_business"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/bg_chip_unselected"
+                            android:gravity="center"
+                            android:text="✓"
+                            android:textColor="#00FF87"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:visibility="invisible" />
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Negocio"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Da visibilidad a tu negocio."
+                        android:textColor="#B3A7F3D0"
+                        android:textSize="11.5sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Full Name Label -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:text="Nombre completo"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_register_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_dark_search_field"
+                android:hint="Tu nombre"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="14dp"
+                android:textColor="@color/white"
+                android:textColorHint="#90A7F3D0"
+                android:textSize="15sp" />
+
+            <!-- Email Label -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="@string/login_label_email"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_register_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_dark_search_field"
+                android:hint="@string/login_hint_email"
+                android:importantForAutofill="no"
+                android:inputType="textEmailAddress"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="14dp"
+                android:textColor="@color/white"
+                android:textColorHint="#90A7F3D0"
+                android:textSize="15sp" />
+
+            <!-- Password Label -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="@string/login_label_password"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_register_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_dark_search_field"
+                android:hint="Crea una contraseña"
+                android:importantForAutofill="no"
+                android:inputType="textPassword"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="14dp"
+                android:textColor="@color/white"
+                android:textColorHint="#90A7F3D0"
+                android:textSize="15sp" />
+
+            <!-- Terms Info Text -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="Al continuar, aceptas los términos y condiciones de PorAquí."
+                android:textColor="#90A7F3D0"
+                android:textSize="12sp" />
+
+            <!-- Register Button -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_register_submit"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_stitch_btn_primary"
+                android:text="Crear cuenta"
+                android:textAllCaps="false"
+                android:textColor="#01140E"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <!-- Already Have Account / Login Link -->
+            <TextView
+                android:id="@+id/tv_back_to_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="6dp"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

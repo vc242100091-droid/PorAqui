@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:background="@drawable/bg_dark_card"
+    android:clickable="true"
+    android:elevation="1dp"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <!-- Icon Container Box -->
+    <FrameLayout
+        android:id="@+id/fl_icon_container"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/bg_card_category">
+
+        <TextView
+            android:id="@+id/tv_business_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="22sp"
+            tools:text="☕" />
+    </FrameLayout>
+
+    <!-- Details Container -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/tv_business_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            tools:text="Cafetería La Esquina" />
+
+        <!-- Rating and Category -->
+        <TextView
+            android:id="@+id/tv_business_rating_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="#A7F3D0"
+            android:textSize="12sp"
+            tools:text="★ 4.8 · Cafeterías" />
+
+        <!-- Distance and Location -->
+        <TextView
+            android:id="@+id/tv_business_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="#B3A7F3D0"
+            android:textSize="11sp"
+            tools:text="📍 850 m · Centro de Sonsonate" />
+
+    </LinearLayout>
+
+    <!-- Right Side: Status Badge & Chevron -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_business_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            tools:text="• Abierto"
+            tools:textColor="#00FF87" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text="›"
+            android:textColor="#A7F3D0"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</LinearLayout>

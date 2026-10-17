@@ -3,6 +3,16 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <!-- Stitch IA Theme Colors -->
+    <color name="stitch_dark_bg">#01140E</color>
+    <color name="stitch_surface_container">#07241A</color>
+    <color name="stitch_surface_high">#132F24</color>
+    <color name="stitch_emerald_primary">#10B981</color>
+    <color name="stitch_emerald_bright">#4EDEA3</color>
+    <color name="stitch_mint_neon">#00FF87</color>
+    <color name="stitch_mint_light">#A7F3D0</color>
+    <color name="stitch_button_primary_end">#059669</color>
+
     <!-- PorAquí Brand Colors -->
     <color name="brand_green_primary">#0B8457</color>
     <color name="brand_green_dark">#022B1C</color>

@@ -5,79 +5,93 @@
     android:id="@+id/splash_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_splash_gradient"
+    android:background="@drawable/bg_stitch_splash_gradient"
     tools:context=".ui.splash.SplashActivity">
 
-    <!-- Decorative ambient background glow -->
-    <View
-        android:id="@+id/bg_glow_top"
-        android:layout_width="260dp"
-        android:layout_height="260dp"
-        android:alpha="0.25"
-        android:background="@drawable/bg_splash_glow"
-        app:layout_constraintBottom_toTopOf="@+id/logo_container"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <!-- Main Content Container Centered -->
+    <!-- Centerpiece Stack: Logo & Slogan -->
     <LinearLayout
-        android:id="@+id/logo_container"
-        android:layout_width="wrap_content"
+        android:id="@+id/center_container"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
-        android:paddingHorizontal="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/progressBar"
+        android:paddingHorizontal="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed">
+        app:layout_constraintVertical_bias="0.45">
 
-        <!-- Logo Icon Pin -->
+        <!-- Logo PNG con transparencia -->
         <ImageView
-            android:id="@+id/iv_logo_icon"
-            android:layout_width="160dp"
-            android:layout_height="160dp"
+            android:id="@+id/iv_splash_logo"
+            android:layout_width="240dp"
+            android:layout_height="240dp"
+            android:adjustViewBounds="true"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/ic_poraqui_logo" />
+            android:scaleType="fitCenter"
+            android:src="@drawable/poraqui_sin_fondo" />
 
-        <!-- Logo Wordmark Text ("PorAquí") -->
-        <ImageView
-            android:id="@+id/iv_logo_wordmark"
-            android:layout_width="200dp"
-            android:layout_height="64dp"
-            android:layout_marginTop="8dp"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/ic_poraqui_wordmark" />
-
-        <!-- Subtitle Text -->
+        <!-- Title Slogan -->
         <TextView
-            android:id="@+id/tv_subtitle"
+            android:id="@+id/tv_splash_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
             android:gravity="center"
-            android:letterSpacing="0.02"
-            android:text="@string/splash_subtitle"
-            android:textColor="@color/splash_text_subtitle"
-            android:textSize="16sp"
-            android:textStyle="normal" />
+            android:lineSpacingExtra="4dp"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            tools:text="Descubre lo que\nhay cerca de ti" />
+
+        <!-- Subtitle Badge -->
+        <TextView
+            android:id="@+id/tv_splash_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:letterSpacing="0.2"
+            android:text="TU GUÍA LOCAL"
+            android:textColor="#B34EDEA3"
+            android:textSize="11sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
-    <!-- Modern Indeterminate Progress Bar -->
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="100dp"
-        android:layout_height="6dp"
-        android:layout_marginBottom="48dp"
-        android:indeterminate="true"
-        android:indeterminateTint="@color/brand_green_accent"
-        android:progressBackgroundTint="#33FFFFFF"
+    <!-- Bottom Container: Progress Indicator & Status Text -->
+    <LinearLayout
+        android:id="@+id/bottom_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingHorizontal="48dp"
+        android:paddingBottom="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- Progress Bar -->
+        <ProgressBar
+            android:id="@+id/progress_bar_splash"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:background="@drawable/bg_stitch_progress_track"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/stitch_mint_neon" />
+
+        <!-- Status Text -->
+        <TextView
+            android:id="@+id/tv_splash_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="Iniciando experiencia..."
+            android:textColor="#B3A7F3D0"
+            android:textSize="13sp" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
