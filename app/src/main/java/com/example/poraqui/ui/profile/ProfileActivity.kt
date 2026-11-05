@@ -49,7 +49,12 @@ class ProfileActivity : AppCompatActivity() {
     private fun setupViews() {
         val btnBusinessMode = findViewById<TextView>(R.id.btn_business_mode)
         btnBusinessMode.setOnClickListener {
-            Toast.makeText(this, "Modo Negocio (Próximamente)", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, com.example.poraqui.ui.business.RegisterBusinessActivity::class.java))
+        }
+
+        val rowRegisterBusiness = findViewById<LinearLayout>(R.id.row_register_business)
+        rowRegisterBusiness.setOnClickListener {
+            startActivity(Intent(this, com.example.poraqui.ui.business.RegisterBusinessActivity::class.java))
         }
 
         val rowSaved = findViewById<LinearLayout>(R.id.row_saved_businesses)

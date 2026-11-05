@@ -223,7 +223,51 @@
                 android:background="@drawable/bg_dark_card"
                 android:orientation="vertical">
 
-                <!-- Row 1: Negocios guardados -->
+                <!-- Row 1: Registrar mi negocio -->
+                <LinearLayout
+                    android:id="@+id/row_register_business"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:gravity="center"
+                        android:text="🏢"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:text="Registrar mi negocio"
+                        android:textColor="@color/white"
+                        android:textSize="14.5sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="›"
+                        android:textColor="#A7F3D0"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#1510B981" />
+
+                <!-- Row 2: Negocios guardados -->
                 <LinearLayout
                     android:id="@+id/row_saved_businesses"
                     android:layout_width="match_parent"

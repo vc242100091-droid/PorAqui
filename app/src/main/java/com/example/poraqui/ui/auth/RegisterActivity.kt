@@ -118,7 +118,11 @@ class RegisterActivity : AppCompatActivity() {
                             firestore.collection("usuarios").document(uid).set(userProfile)
                                 .addOnSuccessListener {
                                     Toast.makeText(this, "¡Registro exitoso!", Toast.LENGTH_SHORT).show()
-                                    startActivity(Intent(this, MainActivity::class.java))
+                                    if (selectedAccountType == "negocio") {
+                                        startActivity(Intent(this, com.example.poraqui.ui.business.RegisterBusinessActivity::class.java))
+                                    } else {
+                                        startActivity(Intent(this, MainActivity::class.java))
+                                    }
                                     finishAffinity()
                                 }
                                 .addOnFailureListener { e ->

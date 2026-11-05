@@ -2,8 +2,12 @@ package com.example.poraqui.data.repository
 
 import com.example.poraqui.data.model.Business
 import com.example.poraqui.data.model.Category
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.FirebaseFirestore
 
 class BusinessRepository {
+
+    private val firestore: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
 
     fun getCategories(): List<Category> {
         return listOf(
@@ -76,5 +80,34 @@ class BusinessRepository {
                 iconBgColorHex = "#C7D2FE"
             )
         )
+    }
+
+    fun saveBusiness(
+        name: String,
+        category: String,
+        location: String,
+        iconEmoji: String,
+        isOpen: Boolean,
+        ownerUid: String?,
+        onSuccess: () -> Unit,
+        onError: (String) -> Unit
+    ) {
+        val docRef = firestore.collection("negocios").document()
+        val businessData = hashMapOf(
+            "id" to docRef.id,
+            "name" to name,
+            "category" to category,
+            "location" to location,
+            "iconEmoji" to if (iconEmoji.isBlank()) "🏪" else iconEmoji,
+            "isOpen" to isOpen,
+            "rating" to 5.0,
+            "distance" to "500 m",
+            "ownerUid" to ownerUid.orEmpty(),
+            "createdAt" to FieldValue.serverTimestamp()
+        )
+
+        docRef.set(businessData)
+            .addOnSuccessListener { onSuccess() }
+            .addOnFailureListener { e -> onError(e.localizedMessage ?: "Error al guardar el negocio en Firebase") }
     }
 }
