@@ -31,7 +31,9 @@ class RegisterBusinessViewModel(
         categories: List<String>,
         location: String,
         emoji: String,
-        isOpen: Boolean
+        isOpen: Boolean,
+        latitudeStr: String,
+        longitudeStr: String
     ) {
         val trimmedName = name.trim()
         val trimmedLocation = location.trim()
@@ -57,6 +59,9 @@ class RegisterBusinessViewModel(
             categoryName.split(" ").drop(1).joinToString(" ").ifEmpty { categoryName }
         } else categoryName
 
+        val lat = latitudeStr.trim().toDoubleOrNull() ?: 13.7188
+        val lng = longitudeStr.trim().toDoubleOrNull() ?: -89.7242
+
         _state.value = State.Loading
 
         val currentUid = auth.currentUser?.uid
@@ -66,6 +71,8 @@ class RegisterBusinessViewModel(
             location = trimmedLocation,
             iconEmoji = emoji.trim(),
             isOpen = isOpen,
+            latitude = lat,
+            longitude = lng,
             ownerUid = currentUid,
             onSuccess = {
                 _state.value = State.Success("¡Negocio registrado exitosamente!")

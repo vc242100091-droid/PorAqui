@@ -188,6 +188,82 @@
                 android:textColorHint="#90A7F3D0"
                 android:textSize="15sp" />
 
+            <!-- Interactive Map Picker Header -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Ubicación en el mapa (Toca o mueve el pin 📍)"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <!-- Interactive Map Picker WebView Container -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="210dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_dark_card"
+                android:padding="2dp">
+
+                <WebView
+                    android:id="@+id/web_view_location_picker"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </FrameLayout>
+
+            <!-- Latitude & Longitude Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Coordenadas capturadas (Latitud / Longitud)"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <EditText
+                    android:id="@+id/et_business_latitude"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_dark_search_field"
+                    android:hint="Lat: 13.7188"
+                    android:importantForAutofill="no"
+                    android:inputType="numberSigned|numberDecimal"
+                    android:paddingHorizontal="14dp"
+                    android:paddingVertical="14dp"
+                    android:textColor="@color/white"
+                    android:textColorHint="#90A7F3D0"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/et_business_longitude"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_dark_search_field"
+                    android:hint="Long: -89.7242"
+                    android:importantForAutofill="no"
+                    android:inputType="numberSigned|numberDecimal"
+                    android:paddingHorizontal="14dp"
+                    android:paddingVertical="14dp"
+                    android:textColor="@color/white"
+                    android:textColorHint="#90A7F3D0"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
             <!-- Open Status Switch/Checkbox -->
             <LinearLayout
                 android:layout_width="match_parent"

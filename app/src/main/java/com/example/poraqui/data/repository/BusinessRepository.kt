@@ -33,7 +33,9 @@ class BusinessRepository {
                 location = "Centro de Sonsonate",
                 isOpen = true,
                 iconEmoji = "☕",
-                iconBgColorHex = "#FDE68A"
+                iconBgColorHex = "#FDE68A",
+                latitude = 13.7188,
+                longitude = -89.7242
             ),
             Business(
                 id = "2",
@@ -44,7 +46,9 @@ class BusinessRepository {
                 location = "Colonia El Ángel",
                 isOpen = true,
                 iconEmoji = "🍔",
-                iconBgColorHex = "#FDE68A"
+                iconBgColorHex = "#FDE68A",
+                latitude = 13.7210,
+                longitude = -89.7215
             ),
             Business(
                 id = "3",
@@ -55,7 +59,9 @@ class BusinessRepository {
                 location = "Avenida Morazán",
                 isOpen = false,
                 iconEmoji = "✂️",
-                iconBgColorHex = "#C7D2FE"
+                iconBgColorHex = "#C7D2FE",
+                latitude = 13.7155,
+                longitude = -89.7280
             ),
             Business(
                 id = "4",
@@ -66,7 +72,9 @@ class BusinessRepository {
                 location = "Barrio El Centro",
                 isOpen = true,
                 iconEmoji = "🛒",
-                iconBgColorHex = "#A7F3D0"
+                iconBgColorHex = "#A7F3D0",
+                latitude = 13.7230,
+                longitude = -89.7200
             ),
             Business(
                 id = "5",
@@ -77,9 +85,102 @@ class BusinessRepository {
                 location = "Calle Principal",
                 isOpen = true,
                 iconEmoji = "🔧",
-                iconBgColorHex = "#C7D2FE"
+                iconBgColorHex = "#C7D2FE",
+                latitude = 13.7120,
+                longitude = -89.7265
             )
         )
+    }
+
+    fun getBusinessesFromFirestore(onResult: (List<Business>) -> Unit) {
+        val staticList = getNearbyBusinesses()
+        firestore.collection("negocios")
+            .get()
+            .addOnSuccessListener { querySnapshot ->
+                val firestoreBusinesses = mutableListOf<Business>()
+                for (doc in querySnapshot.documents) {
+                    val id = doc.getString("id") ?: doc.id
+                    val name = doc.getString("name") ?: "Sin nombre"
+                    val category = doc.getString("category") ?: "Otros"
+                    val rating = doc.getDouble("rating") ?: 5.0
+                    val distance = doc.getString("distance") ?: "500 m"
+                    val location = doc.getString("location") ?: "Sonsonate"
+                    val isOpen = doc.getBoolean("isOpen") ?: true
+                    val iconEmoji = doc.getString("iconEmoji") ?: "🏪"
+                    val lat = doc.getDouble("latitude") ?: 13.7188
+                    val lng = doc.getDouble("longitude") ?: -89.7242
+
+                    firestoreBusinesses.add(
+                        Business(
+                            id = id,
+                            name = name,
+                            category = category,
+                            rating = rating,
+                            distance = distance,
+                            location = location,
+                            isOpen = isOpen,
+                            iconEmoji = iconEmoji,
+                            isDemo = false,
+                            latitude = lat,
+                            longitude = lng
+                        )
+                    )
+                }
+
+                val fullList = mutableListOf<Business>()
+                fullList.addAll(firestoreBusinesses)
+                fullList.addAll(staticList)
+                onResult(fullList)
+            }
+            .addOnFailureListener {
+                onResult(staticList)
+            }
+    }
+
+    fun listenBusinessesFromFirestore(onUpdate: (List<Business>) -> Unit) {
+        val staticList = getNearbyBusinesses()
+        firestore.collection("negocios")
+            .addSnapshotListener { querySnapshot, error ->
+                if (error != null || querySnapshot == null) {
+                    onUpdate(staticList)
+                    return@addSnapshotListener
+                }
+
+                val firestoreBusinesses = mutableListOf<Business>()
+                for (doc in querySnapshot.documents) {
+                    val id = doc.getString("id") ?: doc.id
+                    val name = doc.getString("name") ?: "Sin nombre"
+                    val category = doc.getString("category") ?: "Otros"
+                    val rating = doc.getDouble("rating") ?: 5.0
+                    val distance = doc.getString("distance") ?: "500 m"
+                    val location = doc.getString("location") ?: "Sonsonate"
+                    val isOpen = doc.getBoolean("isOpen") ?: true
+                    val iconEmoji = doc.getString("iconEmoji") ?: "🏪"
+                    val lat = doc.getDouble("latitude") ?: 13.7188
+                    val lng = doc.getDouble("longitude") ?: -89.7242
+
+                    firestoreBusinesses.add(
+                        Business(
+                            id = id,
+                            name = name,
+                            category = category,
+                            rating = rating,
+                            distance = distance,
+                            location = location,
+                            isOpen = isOpen,
+                            iconEmoji = iconEmoji,
+                            isDemo = false,
+                            latitude = lat,
+                            longitude = lng
+                        )
+                    )
+                }
+
+                val fullList = mutableListOf<Business>()
+                fullList.addAll(firestoreBusinesses)
+                fullList.addAll(staticList)
+                onUpdate(fullList)
+            }
     }
 
     fun saveBusiness(
@@ -88,6 +189,8 @@ class BusinessRepository {
         location: String,
         iconEmoji: String,
         isOpen: Boolean,
+        latitude: Double,
+        longitude: Double,
         ownerUid: String?,
         onSuccess: () -> Unit,
         onError: (String) -> Unit
@@ -102,6 +205,8 @@ class BusinessRepository {
             "isOpen" to isOpen,
             "rating" to 5.0,
             "distance" to "500 m",
+            "latitude" to latitude,
+            "longitude" to longitude,
             "ownerUid" to ownerUid.orEmpty(),
             "createdAt" to FieldValue.serverTimestamp()
         )

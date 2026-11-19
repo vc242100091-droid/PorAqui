@@ -45,10 +45,11 @@ class MainViewModel(
 
     private fun loadHomeData() {
         _categories.value = repository.getCategories()
-        val list = repository.getNearbyBusinesses()
-        allBusinesses.clear()
-        allBusinesses.addAll(list)
-        _businesses.value = list
+        repository.getBusinessesFromFirestore { list ->
+            allBusinesses.clear()
+            allBusinesses.addAll(list)
+            _businesses.value = list
+        }
     }
 
     fun filterBusinesses(query: String) {

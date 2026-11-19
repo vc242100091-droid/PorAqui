@@ -34,11 +34,11 @@ class ExploreViewModel(
         chipList.addAll(categories.map { FilterChipItem(it.name, it.iconEmoji) })
         _filterChips.value = chipList
 
-        val list = repository.getNearbyBusinesses()
-        allBusinesses.clear()
-        allBusinesses.addAll(list)
-
-        applyFilters()
+        repository.getBusinessesFromFirestore { list ->
+            allBusinesses.clear()
+            allBusinesses.addAll(list)
+            applyFilters()
+        }
     }
 
     fun setSelectedCategory(categoryName: String) {

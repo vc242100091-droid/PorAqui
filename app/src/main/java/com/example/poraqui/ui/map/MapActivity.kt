@@ -1,9 +1,12 @@
 package com.example.poraqui.ui.map
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.widget.LinearLayout
+import android.webkit.JavascriptInterface
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -11,15 +14,23 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.poraqui.MainActivity
 import com.example.poraqui.R
+import com.example.poraqui.data.model.Business
 import com.example.poraqui.ui.explore.ExploreActivity
 import com.example.poraqui.viewmodel.MapViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import org.json.JSONArray
+import org.json.JSONObject
 
 class MapActivity : AppCompatActivity() {
 
     private val viewModel: MapViewModel by viewModels()
+    private lateinit var pinAdapter: MapPinAdapter
+    private lateinit var webViewMap: WebView
+    private var isMapLoaded = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +46,7 @@ class MapActivity : AppCompatActivity() {
         }
 
         setupViews()
+        setupWebView()
         setupNavigation()
         observeViewModel()
     }
@@ -51,15 +63,32 @@ class MapActivity : AppCompatActivity() {
             Toast.makeText(this, "Filtros de mapa (Radio: 3.5 km)", Toast.LENGTH_SHORT).show()
         }
 
-        val pinCoffee = findViewById<LinearLayout>(R.id.pin_coffee)
-        pinCoffee.setOnClickListener {
-            viewModel.selectBusinessByName("Cafetería La Esquina")
+        val rvPins = findViewById<RecyclerView>(R.id.rv_map_pins)
+        pinAdapter = MapPinAdapter { business ->
+            viewModel.selectBusiness(business)
+        }
+        rvPins.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        rvPins.adapter = pinAdapter
+    }
+
+    @SuppressLint("SetJavaScriptEnabled")
+    private fun setupWebView() {
+        webViewMap = findViewById(R.id.web_view_map)
+        webViewMap.settings.javaScriptEnabled = true
+        webViewMap.settings.domStorageEnabled = true
+        webViewMap.addJavascriptInterface(WebAppInterface(), "AndroidBridge")
+
+        webViewMap.webViewClient = object : WebViewClient() {
+            override fun onPageFinished(view: WebView?, url: String?) {
+                super.onPageFinished(view, url)
+                isMapLoaded = true
+                viewModel.businesses.value?.let { list ->
+                    sendBusinessesToMap(list)
+                }
+            }
         }
 
-        val pinMarta = findViewById<LinearLayout>(R.id.pin_marta)
-        pinMarta.setOnClickListener {
-            viewModel.selectBusinessByName("Pupusería Doña Marta")
-        }
+        webViewMap.loadUrl("file:///android_asset/leaflet_map.html")
     }
 
     private fun setupNavigation() {
@@ -113,11 +142,23 @@ class MapActivity : AppCompatActivity() {
             tvRadius.text = radius
         }
 
+        viewModel.businesses.observe(this) { list ->
+            pinAdapter.updateList(list)
+            if (isMapLoaded) {
+                sendBusinessesToMap(list)
+            }
+        }
+
         viewModel.selectedBusiness.observe(this) { business ->
             tvIcon.text = business.iconEmoji
             tvName.text = business.name
             tvRatingCategory.text = "★ ${business.rating} · ${business.category}"
-            tvLocation.text = "📍 ${business.distance} · ${business.location}"
+            val coordsText = if (business.latitude != 0.0 && business.longitude != 0.0) {
+                "📍 ${business.location} (${String.format("%.4f", business.latitude)}, ${String.format("%.4f", business.longitude)})"
+            } else {
+                "📍 ${business.distance} · ${business.location}"
+            }
+            tvLocation.text = coordsText
 
             if (business.isOpen) {
                 tvStatus.text = "• Abierto"
@@ -125,6 +166,36 @@ class MapActivity : AppCompatActivity() {
             } else {
                 tvStatus.text = "• Cerrado"
                 tvStatus.setTextColor(Color.parseColor("#F59E0B"))
+            }
+        }
+    }
+
+    private fun sendBusinessesToMap(list: List<Business>) {
+        val jsonArray = JSONArray()
+        for (b in list) {
+            val obj = JSONObject()
+            obj.put("id", b.id)
+            obj.put("name", b.name)
+            obj.put("category", b.category)
+            obj.put("location", b.location)
+            obj.put("iconEmoji", b.iconEmoji)
+            obj.put("isOpen", b.isOpen)
+            obj.put("latitude", b.latitude)
+            obj.put("longitude", b.longitude)
+            jsonArray.put(obj)
+        }
+
+        val jsonString = jsonArray.toString().replace("'", "\\'")
+        webViewMap.post {
+            webViewMap.evaluateJavascript("setBusinesses('$jsonString')", null)
+        }
+    }
+
+    inner class WebAppInterface {
+        @JavascriptInterface
+        fun onBusinessSelected(id: String) {
+            runOnUiThread {
+                viewModel.selectBusinessById(id)
             }
         }
     }

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Selector de Ubicación PorAquí</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #E5E7EB;
+            font-family: Roboto, -apple-system, sans-serif;
+        }
+
+        .picker-pin-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .picker-pin-bubble {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            border: 2px solid #FFFFFF;
+        }
+
+        .picker-pin-emoji {
+            transform: rotate(45deg);
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script>
+        var map;
+        var marker;
+
+        function initMap() {
+            var defaultLat = 13.7188;
+            var defaultLng = -89.7242;
+
+            map = L.map('map', {
+                zoomControl: true,
+                attributionControl: false
+            }).setView([defaultLat, defaultLng], 15);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                subdomains: 'abc'
+            }).addTo(map);
+
+            var customIcon = L.divIcon({
+                html: '<div class="picker-pin-container"><div class="picker-pin-bubble"><span class="picker-pin-emoji">📍</span></div></div>',
+                className: '',
+                iconSize: [40, 40],
+                iconAnchor: [20, 40]
+            });
+
+            marker = L.marker([defaultLat, defaultLng], {
+                draggable: true,
+                icon: customIcon
+            }).addTo(map);
+
+            marker.on('dragend', function (event) {
+                var position = marker.getLatLng();
+                notifyAndroid(position.lat, position.lng);
+            });
+
+            map.on('click', function (e) {
+                marker.setLatLng(e.latlng);
+                notifyAndroid(e.latlng.lat, e.latlng.lng);
+            });
+
+            notifyAndroid(defaultLat, defaultLng);
+        }
+
+        function notifyAndroid(lat, lng) {
+            if (window.AndroidBridge && window.AndroidBridge.onLocationSelected) {
+                window.AndroidBridge.onLocationSelected(lat.toFixed(6), lng.toFixed(6));
+            }
+        }
+
+        function setMarker(lat, lng) {
+            if (map && marker) {
+                var newLatLng = L.latLng(lat, lng);
+                marker.setLatLng(newLatLng);
+                map.panTo(newLatLng);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            initMap();
+        });
+    </script>
+</body>
+</html>

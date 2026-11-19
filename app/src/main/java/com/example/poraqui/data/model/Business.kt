@@ -10,5 +10,7 @@ data class Business(
     val isOpen: Boolean,
     val iconEmoji: String,
     val iconBgColorHex: String = "#FDE68A",
-    val isDemo: Boolean = true
+    val isDemo: Boolean = true,
+    val latitude: Double = 13.7188,
+    val longitude: Double = -89.7242
 )

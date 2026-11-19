@@ -1,8 +1,10 @@
 package com.example.poraqui.ui.business
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
+import android.webkit.JavascriptInterface
+import android.webkit.WebView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.CheckBox
@@ -23,6 +25,7 @@ import com.example.poraqui.viewmodel.RegisterBusinessViewModel
 class RegisterBusinessActivity : AppCompatActivity() {
 
     private val viewModel: RegisterBusinessViewModel by viewModels()
+    private lateinit var webViewPicker: WebView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +40,7 @@ class RegisterBusinessActivity : AppCompatActivity() {
         }
 
         setupViews()
+        setupPickerWebView()
         observeViewModel()
     }
 
@@ -46,6 +50,8 @@ class RegisterBusinessActivity : AppCompatActivity() {
         val spCategory = findViewById<Spinner>(R.id.sp_business_category)
         val etLocation = findViewById<EditText>(R.id.et_business_location)
         val etEmoji = findViewById<EditText>(R.id.et_business_emoji)
+        val etLatitude = findViewById<EditText>(R.id.et_business_latitude)
+        val etLongitude = findViewById<EditText>(R.id.et_business_longitude)
         val cbOpen = findViewById<CheckBox>(R.id.cb_business_open)
         val btnSubmit = findViewById<Button>(R.id.btn_register_business)
 
@@ -62,6 +68,8 @@ class RegisterBusinessActivity : AppCompatActivity() {
             val name = etName.text.toString()
             val location = etLocation.text.toString()
             val emoji = etEmoji.text.toString()
+            val latitudeStr = etLatitude.text.toString()
+            val longitudeStr = etLongitude.text.toString()
             val isOpen = cbOpen.isChecked
             val selectedCategoryPos = spCategory.selectedItemPosition
 
@@ -71,9 +79,20 @@ class RegisterBusinessActivity : AppCompatActivity() {
                 categories = categoryList,
                 location = location,
                 emoji = emoji,
-                isOpen = isOpen
+                isOpen = isOpen,
+                latitudeStr = latitudeStr,
+                longitudeStr = longitudeStr
             )
         }
+    }
+
+    @SuppressLint("SetJavaScriptEnabled")
+    private fun setupPickerWebView() {
+        webViewPicker = findViewById(R.id.web_view_location_picker)
+        webViewPicker.settings.javaScriptEnabled = true
+        webViewPicker.settings.domStorageEnabled = true
+        webViewPicker.addJavascriptInterface(PickerBridge(), "AndroidBridge")
+        webViewPicker.loadUrl("file:///android_asset/leaflet_picker.html")
     }
 
     private fun observeViewModel() {
@@ -100,6 +119,18 @@ class RegisterBusinessActivity : AppCompatActivity() {
                     Toast.makeText(this, state.message, Toast.LENGTH_LONG).show()
                     viewModel.resetState()
                 }
+            }
+        }
+    }
+
+    inner class PickerBridge {
+        @JavascriptInterface
+        fun onLocationSelected(lat: String, lng: String) {
+            runOnUiThread {
+                val etLatitude = findViewById<EditText>(R.id.et_business_latitude)
+                val etLongitude = findViewById<EditText>(R.id.et_business_longitude)
+                etLatitude.setText(lat)
+                etLongitude.setText(lng)
             }
         }
     }

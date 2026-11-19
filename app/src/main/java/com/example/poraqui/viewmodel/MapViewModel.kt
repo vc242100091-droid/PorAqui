@@ -10,6 +10,9 @@ class MapViewModel(
     private val repository: BusinessRepository = BusinessRepository()
 ) : ViewModel() {
 
+    private val _businesses = MutableLiveData<List<Business>>()
+    val businesses: LiveData<List<Business>> get() = _businesses
+
     private val _selectedBusiness = MutableLiveData<Business>()
     val selectedBusiness: LiveData<Business> get() = _selectedBusiness
 
@@ -26,13 +29,25 @@ class MapViewModel(
     }
 
     private fun loadData() {
-        val list = repository.getNearbyBusinesses()
-        allBusinesses.clear()
-        allBusinesses.addAll(list)
+        repository.listenBusinessesFromFirestore { list ->
+            allBusinesses.clear()
+            allBusinesses.addAll(list)
+            _businesses.value = list
 
-        // Default selected business
-        if (allBusinesses.isNotEmpty()) {
-            _selectedBusiness.value = allBusinesses.first()
+            if (list.isNotEmpty() && _selectedBusiness.value == null) {
+                _selectedBusiness.value = list.first()
+            }
+        }
+    }
+
+    fun selectBusiness(business: Business) {
+        _selectedBusiness.value = business
+    }
+
+    fun selectBusinessById(id: String) {
+        val found = allBusinesses.find { it.id == id }
+        if (found != null) {
+            _selectedBusiness.value = found
         }
     }
 
